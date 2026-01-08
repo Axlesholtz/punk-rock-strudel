@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punk Rock - Strudel</title>
+    <script src="https://unpkg.com/@strudel/repl@latest"></script>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #ff3366;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 0 #000;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 30px;
+        }
+        strudel-editor {
+            display: block;
+            height: 500px;
+            border: 3px solid #ff3366;
+            border-radius: 8px;
+        }
+        .instructions {
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa;
+        }
+        .instructions kbd {
+            background: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #555;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .btn {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 40px;
+            margin: 0 10px;
+            border: 3px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+        .btn-start {
+            background: #22cc44;
+            color: #000;
+            border-color: #22cc44;
+        }
+        .btn-start:hover {
+            background: #33ff55;
+            box-shadow: 0 0 20px #22cc44;
+        }
+        .btn-stop {
+            background: #ff3366;
+            color: #000;
+            border-color: #ff3366;
+        }
+        .btn-stop:hover {
+            background: #ff5588;
+            box-shadow: 0 0 20px #ff3366;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎸 Punk Rock 🎸</h1>
+    <p class="subtitle">Fast, Loud, and Angry!</p>
+    
+    <div class="controls">
+        <button class="btn btn-start" onclick="document.querySelector('strudel-editor').editor.evaluate()">▶ Start</button>
+        <button class="btn btn-stop" onclick="document.querySelector('strudel-editor').editor.stop()">■ Stop</button>
+    </div>
+    
+    <strudel-editor>
+// PUNK ROCK - Fast and Aggressive!
+// Press Ctrl+Enter to start, Ctrl+. to stop
+
+setcps(1.8) // Fast punk tempo ~216 BPM
+
+// Power chord progression (I-IV-V-I punk style)
+$: n("0 0 3 3 5 5 0 0".fast(2))
+  .scale("C:minor")
+  .sound("sawtooth")
+  .cutoff(800)
+  .resonance(10)
+  .gain(0.6)
+  .distort(0.8)
+  .room(0.1)
+
+// Octave bass following the chords
+$: n("0 0 3 3 5 5 0 0".fast(2))
+  .scale("C1:minor")
+  .sound("sawtooth")
+  .cutoff(400)
+  .gain(0.7)
+  .distort(0.5)
+
+// Fast punk drums - driving beat
+$: sound("bd sd bd sd").fast(2)
+  .gain(1)
+  .distort(0.3)
+
+// Constant hi-hat attack
+$: sound("hh*16")
+  .gain(0.5)
+  .cutoff(8000)
+
+// Crash on the 1
+$: sound("oh:1 ~ ~ ~")
+  .gain(0.4)
+  .room(0.2)
+
+// Extra snare hits for aggression
+$: sound("~ sd:3 ~ sd:3").fast(2)
+  .gain(0.3)
+  .delay(0.1)
+    </strudel-editor>
+    
+    <div class="instructions">
+        <p>Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to play | Press <kbd>Ctrl</kbd> + <kbd>.</kbd> to stop</p>
+        <p>Edit the code to make it your own! 🤘</p>
+    </div>
+</body>
+</html>
